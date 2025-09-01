@@ -1,138 +1,738 @@
-export interface QuizQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  feedback: {
-    correct: string;
-    incorrect: string;
-  };
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft 365 Services Infographic and Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'heading': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .font-heading { font-family: 'Poppins', system-ui, sans-serif; }
+        .font-sans { font-family: 'Inter', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen bg-secondary-50 flex flex-col font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-8 px-4 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14,2 14,8 20,8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10,9 9,9 8,9"></polyline>
+                </svg>
+                <h1 class="text-2xl md:text-3xl font-heading font-bold">Services Microsoft 365 Expliqués</h1>
+            </div>
+            <p class="text-sm md:text-base opacity-90 font-sans">
+                Comprendre Teams, SharePoint & OneDrive
+            </p>
+        </div>
+    </header>
 
-export const quizQuestions: QuizQuestion[] = [
-  {
-    id: 1,
-    question: "Quel service Microsoft 365 est principalement conçu pour la collaboration et la communication d'équipe ?",
-    options: ["OneDrive", "SharePoint", "Microsoft Teams", "Outlook"],
-    correctAnswer: 2,
-    feedback: {
-      correct: "Correct ! Microsoft Teams est le hub de collaboration de Microsoft, offrant chat, réunions vidéo, stockage de fichiers et intégration d'applications.",
-      incorrect: "Incorrect. Microsoft Teams est l'outil principal pour la collaboration et la communication d'équipe, offrant chat, réunions vidéo et plus encore."
-    }
-  },
-  {
-    id: 2,
-    question: "Où stockeriez-vous principalement vos fichiers de travail personnels dans Microsoft 365 ?",
-    options: ["SharePoint", "OneDrive", "Teams", "Exchange"],
-    correctAnswer: 1,
-    feedback: {
-      correct: "Correct ! OneDrive est conçu pour le stockage et le partage de fichiers individuels.",
-      incorrect: "Incorrect. OneDrive est le service de stockage cloud de Microsoft conçu pour les fichiers de travail personnels."
-    }
-  },
-  {
-    id: 3,
-    question: "Quel service utiliseriez-vous pour créer un intranet d'entreprise ?",
-    options: ["OneDrive", "SharePoint", "Microsoft Teams", "Exchange"],
-    correctAnswer: 1,
-    feedback: {
-      correct: "Correct ! SharePoint est idéal pour créer des intranets, des systèmes de gestion documentaire et des sites d'équipe.",
-      incorrect: "Incorrect. SharePoint est le service utilisé pour créer des intranets et la gestion de contenu organisationnel."
-    }
-  },
-  {
-    id: 4,
-    question: "Lorsque vous partagez un fichier dans Microsoft Teams, où est-il réellement stocké ?",
-    options: ["Uniquement dans Teams", "OneDrive", "SharePoint", "Cela dépend de la façon dont vous le partagez"],
-    correctAnswer: 3,
-    feedback: {
-      correct: "Correct ! Dans les canaux Teams, les fichiers sont stockés dans SharePoint. Dans les conversations privées, ils sont stockés dans OneDrive.",
-      incorrect: "Incorrect. Cela dépend : dans les canaux Teams → SharePoint, dans les conversations privées → OneDrive."
-    }
-  },
-  {
-    id: 5,
-    question: "Quel service Microsoft 365 offre une application de synchronisation pour travailler hors ligne ?",
-    options: ["Uniquement OneDrive", "Uniquement SharePoint", "OneDrive et SharePoint", "Aucun des deux"],
-    correctAnswer: 0,
-    feedback: {
-      correct: "Correct ! OneDrive a une application de synchronisation native. SharePoint peut être synchronisé via l'application OneDrive, mais c'est OneDrive qui gère la synchronisation.",
-      incorrect: "Incorrect. OneDrive est le service principal de synchronisation. SharePoint utilise l'application OneDrive pour la synchronisation."
-    }
-  },
-  {
-    id: 6,
-    question: "Quelle est la principale différence entre OneDrive et SharePoint ?",
-    options: [
-      "OneDrive est pour les fichiers personnels, SharePoint pour les fichiers d'équipe",
-      "OneDrive est gratuit, SharePoint est payant",
-      "OneDrive est uniquement cloud, SharePoint fonctionne sur site",
-      "OneDrive est pour le partage externe, SharePoint est interne uniquement"
-    ],
-    correctAnswer: 0,
-    feedback: {
-      correct: "Correct ! OneDrive est conçu pour le stockage personnel/individuel, tandis que SharePoint est conçu pour la collaboration d'équipe et la gestion de contenu.",
-      incorrect: "Incorrect. La principale différence est qu'OneDrive est pour les fichiers personnels, tandis que SharePoint est pour la collaboration d'équipe et le contenu."
-    }
-  },
-  {
-    id: 7,
-    question: "Laquelle de ces plateformes permet la co-édition de documents en temps réel ?",
-    options: [
-      "Uniquement Microsoft Teams",
-      "Uniquement SharePoint",
-      "Uniquement OneDrive",
-      "Toutes ces plateformes"
-    ],
-    correctAnswer: 3,
-    feedback: {
-      correct: "Correct ! Teams, SharePoint et OneDrive supportent tous la co-édition en temps réel des documents Office.",
-      incorrect: "Incorrect. Les trois plateformes (Teams, SharePoint et OneDrive) supportent la co-édition en temps réel des documents Office."
-    }
-  },
-  {
-    id: 8,
-    question: "Que se passe-t-il avec vos fichiers Microsoft Teams si vous supprimez un canal Teams ?",
-    options: [
-      "Les fichiers sont définitivement supprimés",
-      "Les fichiers restent dans SharePoint mais la structure des dossiers change",
-      "Les fichiers sont automatiquement déplacés vers OneDrive",
-      "Les fichiers sont archivés pendant 30 jours puis supprimés"
-    ],
-    correctAnswer: 1,
-    feedback: {
-      correct: "Correct ! Lorsque vous supprimez un canal Teams, les fichiers restent dans SharePoint mais sous une structure de dossiers différente.",
-      incorrect: "Incorrect. Les fichiers des canaux Teams supprimés restent dans SharePoint, mais la structure des dossiers change."
-    }
-  },
-  {
-    id: 9,
-    question: "Pour partager un fichier avec quelqu'un en dehors de votre organisation, quelle est la méthode recommandée ?",
-    options: [
-      "Partage direct via OneDrive avec lien de partage",
-      "Partage via SharePoint avec permissions externes",
-      "Les deux méthodes sont possibles selon le contexte",
-      "Envoyer le fichier par email via Outlook"
-    ],
-    correctAnswer: 2,
-    feedback: {
-      correct: "Correct ! OneDrive est idéal pour le partage personnel et ponctuel, SharePoint pour le partage structuré d'équipe. Les deux nécessitent que l'administrateur autorise le partage externe.",
-      incorrect: "Incorrect. Les deux services permettent le partage externe, mais OneDrive est plus simple pour le partage personnel, SharePoint pour le partage d'équipe structuré."
-    }
-  },
-  {
-    id: 10,
-    question: "Quelle est la meilleure pratique pour organiser les fichiers d'un projet d'équipe ?",
-    options: [
-      "Tout stocker dans OneDrive et partager individuellement",
-      "Utiliser SharePoint pour les fichiers d'équipe et OneDrive pour les brouillons personnels",
-      "Utiliser uniquement Teams pour tout stocker",
-      "Envoyer tous les fichiers par email"
-    ],
-    correctAnswer: 1,
-    feedback: {
-      correct: "Correct ! SharePoint pour les fichiers finalisés d'équipe avec structure organisée, OneDrive pour vos brouillons et fichiers personnels avant partage.",
-      incorrect: "Incorrect. La meilleure pratique est d'utiliser SharePoint pour les fichiers d'équipe finalisés et OneDrive pour vos brouillons personnels."
-    }
-  }
-];
+    <!-- Main Content -->
+    <main class="flex-1">
+        <!-- Infographic Section -->
+        <div class="container mx-auto px-4 py-16">
+            <section class="mb-16">
+                <h2 class="text-3xl font-heading font-bold text-center mb-4 text-secondary-800">Que sont ces services Microsoft 365 ?</h2>
+                <p class="text-secondary-600 text-center max-w-3xl mx-auto mb-12 font-sans text-lg">
+                    Microsoft 365 offre une suite d'outils de productivité qui fonctionnent ensemble. Voici comment Teams, SharePoint et OneDrive diffèrent et se complètent.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Microsoft Teams Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border-t-4 border-t-accent-600">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 rounded-full bg-accent-600 text-white mr-3">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-secondary-800">Microsoft Teams</h3>
+                            </div>
+                            <p class="text-secondary-600 mb-4 font-sans">Le hub pour le travail d'équipe et la communication dans Microsoft 365</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Communication par chat</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Réunions et appels vidéo</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Conversations par canaux</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Intégrations d'applications</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Partage et collaboration sur les fichiers</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SharePoint Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border-t-4 border-t-primary-600">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 rounded-full bg-primary-600 text-white mr-3">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                        <path d="m3 5 9 9 9-9"></path>
+                                        <path d="m3 12 9 9 9-9"></path>
+                                        <path d="m3 19 9 9 9-9"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-secondary-800">SharePoint</h3>
+                            </div>
+                            <p class="text-secondary-600 mb-4 font-sans">Plateforme de gestion de contenu et de collaboration d'équipe</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Sites d'équipe et intranet</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Bibliothèques de documents</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Listes et gestion des données</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Automatisation des flux de travail</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Publication de contenu</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- OneDrive Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border-t-4 border-t-primary-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 rounded-full bg-primary-500 text-white mr-3">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-secondary-800">OneDrive</h3>
+                            </div>
+                            <p class="text-secondary-600 mb-4 font-sans">Stockage cloud personnel pour les fichiers de travail</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Stockage de fichiers personnels</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Synchronisation entre appareils</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Accès hors ligne aux fichiers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Partage avec des personnes spécifiques</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-primary-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                    </svg>
+                                    <span class="text-secondary-700 font-sans">Sauvegarde des dossiers importants</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How they work together -->
+            <section class="bg-white rounded-xl p-8 mb-16 shadow-lg">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-secondary-800">Comment ils fonctionnent ensemble</h2>
+                
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+                        <div class="bg-accent-600 text-white p-4 rounded-lg shadow-md mb-4 md:mb-0 w-full md:w-1/4">
+                            <h3 class="font-heading font-bold mb-2 text-center">Microsoft Teams</h3>
+                            <p class="text-sm text-center">Le hub de collaboration</p>
+                        </div>
+                        
+                        <svg class="hidden md:block text-secondary-400 mx-4 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12,5 19,12 12,19"></polyline>
+                        </svg>
+                        
+                        <div class="bg-primary-600 text-white p-4 rounded-lg shadow-md mb-4 md:mb-0 w-full md:w-1/4">
+                            <h3 class="font-heading font-bold mb-2 text-center">SharePoint</h3>
+                            <p class="text-sm text-center">Stockage du contenu d'équipe</p>
+                        </div>
+                        
+                        <svg class="hidden md:block text-secondary-400 mx-4 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12,5 19,12 12,19"></polyline>
+                        </svg>
+                        
+                        <div class="bg-primary-500 text-white p-4 rounded-lg shadow-md w-full md:w-1/4">
+                            <h3 class="font-heading font-bold mb-2 text-center">OneDrive</h3>
+                            <p class="text-sm text-center">Stockage du contenu personnel</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-secondary-50 rounded-lg shadow-md p-6">
+                        <p class="mb-6 text-secondary-600 font-sans">
+                            Lorsque vous créez une équipe dans <strong>Microsoft Teams</strong>, un site <strong>SharePoint</strong> est automatiquement créé pour stocker les fichiers de l'équipe. Vos fichiers personnels sont stockés dans <strong>OneDrive</strong>, mais vous pouvez les partager et collaborer dessus via Teams également.
+                        </p>
+                        
+                        <div class="flex flex-col space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-accent-600 p-2 rounded-full text-white mr-4">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-secondary-800">Travailler dans Teams</h4>
+                                    <p class="text-secondary-600 font-sans">Lorsque vous partagez des fichiers dans un canal Teams, ils sont stockés dans le site SharePoint de l'équipe. Les fichiers des chats privés sont stockés dans votre OneDrive.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary-600 p-2 rounded-full text-white mr-4">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-secondary-800">Accès de n'importe où</h4>
+                                    <p class="text-secondary-600 font-sans">Vous pouvez accéder à vos fichiers directement via SharePoint ou OneDrive, ou de manière transparente via Teams.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Table -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-secondary-800">Comparaison détaillée</h2>
+                
+                <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+                    <div class="min-w-[768px]">
+                        <div class="grid grid-cols-4 gap-4 p-4 border-b-2 border-secondary-300 bg-secondary-50">
+                            <div class="font-heading font-bold text-secondary-700">Fonctionnalité</div>
+                            <div class="font-heading font-bold text-accent-600">Microsoft Teams</div>
+                            <div class="font-heading font-bold text-primary-600">SharePoint</div>
+                            <div class="font-heading font-bold text-primary-500">OneDrive</div>
+                        </div>
+                        
+                        <div class="p-4">
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Objectif principal</div>
+                                <div class="text-sm text-gray-600">Hub de communication et collaboration d'équipe</div>
+                                <div class="text-sm text-gray-600">Gestion de contenu d'équipe et intranet</div>
+                                <div class="text-sm text-gray-600">Stockage et partage de fichiers personnels</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Comment y accéder</div>
+                                <div class="text-sm text-gray-600">teams.microsoft.com ou application Teams</div>
+                                <div class="text-sm text-gray-600">sharepoint.com ou via Teams (onglet Fichiers)</div>
+                                <div class="text-sm text-gray-600">onedrive.com ou synchronisation locale</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Idéal pour</div>
+                                <div class="text-sm text-gray-600">Communication quotidienne, réunions, intégration d'apps</div>
+                                <div class="text-sm text-gray-600">Bibliothèques de documents, intranet, gestion des connaissances</div>
+                                <div class="text-sm text-gray-600">Fichiers de travail personnels, brouillons, partage contrôlé</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Stockage des fichiers</div>
+                                <div class="text-sm text-gray-600">Stocke les fichiers dans SharePoint (canaux) ou OneDrive (chats)</div>
+                                <div class="text-sm text-gray-600">Bibliothèques de documents avec permissions avancées</div>
+                                <div class="text-sm text-gray-600">Stockage personnel avec partage simplifié</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Portée du partage</div>
+                                <div class="text-sm text-gray-600">Membres de l'équipe et invités</div>
+                                <div class="text-sm text-gray-600">Interne/externe avec permissions détaillées</div>
+                                <div class="text-sm text-gray-600">Principalement individuel, avec options de partage</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3 border-b border-gray-200">
+                                <div class="font-medium text-gray-800">Fonctionnalités clés</div>
+                                <div class="text-sm text-gray-600">Chat, appels, réunions, canaux, apps</div>
+                                <div class="text-sm text-gray-600">Bibliothèques de documents, listes, pages, workflows</div>
+                                <div class="text-sm text-gray-600">Synchronisation de fichiers, stockage personnel, partage basique</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-4 gap-4 py-3">
+                                <div class="font-medium text-gray-800">Quand l'utiliser</div>
+                                <div class="text-sm text-gray-600">Pour la collaboration et communication en direct</div>
+                                <div class="text-sm text-gray-600">Pour le contenu d'équipe organisé et les portails</div>
+                                <div class="text-sm text-gray-600">Pour les fichiers personnels avant d'être prêts à partager</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Signature -->
+            <section class="text-center py-8 border-t border-secondary-200">
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-secondary-600 font-sans text-sm mb-2">
+                        Créé par <span class="font-medium text-secondary-800">Rochane Kherbouche</span>
+                    </p>
+                    <p class="text-secondary-500 font-sans text-xs">CC BY-SA</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="container mx-auto px-4 py-16 bg-secondary-50">
+            <h2 class="text-3xl font-heading font-bold text-center mb-4 text-secondary-800">Testez vos connaissances</h2>
+            <p class="text-secondary-600 text-center max-w-3xl mx-auto mb-12 font-sans text-lg">
+                Répondez à ces 10 questions pour voir à quel point vous comprenez les différences entre Microsoft Teams, SharePoint et OneDrive.
+            </p>
+
+            <div id="quiz-container" class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Quiz content will be dynamically generated -->
+            </div>
+
+            <!-- Quiz Signature -->
+            <div class="text-center mt-12 pt-8 border-t border-secondary-200">
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-secondary-600 font-sans text-sm mb-2">
+                        Créé par <span class="font-medium text-secondary-800">Rochane Kherbouche</span>
+                    </p>
+                    <p class="text-secondary-500 font-sans text-xs">CC BY-SA</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Quiz Data
+        const quizQuestions = [
+            {
+                id: 1,
+                question: "Quel service Microsoft 365 est principalement conçu pour la collaboration et la communication d'équipe ?",
+                options: ["OneDrive", "SharePoint", "Microsoft Teams", "Outlook"],
+                correctAnswer: 2,
+                feedback: {
+                    correct: "Correct ! Microsoft Teams est le hub de collaboration de Microsoft, offrant chat, réunions vidéo, stockage de fichiers et intégration d'applications.",
+                    incorrect: "Incorrect. Microsoft Teams est l'outil principal pour la collaboration et la communication d'équipe, offrant chat, réunions vidéo et plus encore."
+                }
+            },
+            {
+                id: 2,
+                question: "Où stockeriez-vous principalement vos fichiers de travail personnels dans Microsoft 365 ?",
+                options: ["SharePoint", "OneDrive", "Teams", "Exchange"],
+                correctAnswer: 1,
+                feedback: {
+                    correct: "Correct ! OneDrive est conçu pour le stockage et le partage de fichiers individuels.",
+                    incorrect: "Incorrect. OneDrive est le service de stockage cloud de Microsoft conçu pour les fichiers de travail personnels."
+                }
+            },
+            {
+                id: 3,
+                question: "Quel service utiliseriez-vous pour créer un intranet d'entreprise ?",
+                options: ["OneDrive", "SharePoint", "Microsoft Teams", "Exchange"],
+                correctAnswer: 1,
+                feedback: {
+                    correct: "Correct ! SharePoint est idéal pour créer des intranets, des systèmes de gestion documentaire et des sites d'équipe.",
+                    incorrect: "Incorrect. SharePoint est le service utilisé pour créer des intranets et la gestion de contenu organisationnel."
+                }
+            },
+            {
+                id: 4,
+                question: "Lorsque vous partagez un fichier dans Microsoft Teams, où est-il réellement stocké ?",
+                options: ["Uniquement dans Teams", "OneDrive", "SharePoint", "Cela dépend de la façon dont vous le partagez"],
+                correctAnswer: 3,
+                feedback: {
+                    correct: "Correct ! Dans les canaux Teams, les fichiers sont stockés dans SharePoint. Dans les conversations privées, ils sont stockés dans OneDrive.",
+                    incorrect: "Incorrect. Cela dépend : dans les canaux Teams → SharePoint, dans les conversations privées → OneDrive."
+                }
+            },
+            {
+                id: 5,
+                question: "Quel service Microsoft 365 offre une application de synchronisation pour travailler hors ligne ?",
+                options: ["Uniquement OneDrive", "Uniquement SharePoint", "OneDrive et SharePoint", "Aucun des deux"],
+                correctAnswer: 0,
+                feedback: {
+                    correct: "Correct ! OneDrive a une application de synchronisation native. SharePoint peut être synchronisé via l'application OneDrive, mais c'est OneDrive qui gère la synchronisation.",
+                    incorrect: "Incorrect. OneDrive est le service principal de synchronisation. SharePoint utilise l'application OneDrive pour la synchronisation."
+                }
+            },
+            {
+                id: 6,
+                question: "Quelle est la principale différence entre OneDrive et SharePoint ?",
+                options: [
+                    "OneDrive est pour les fichiers personnels, SharePoint pour les fichiers d'équipe",
+                    "OneDrive est gratuit, SharePoint est payant",
+                    "OneDrive est uniquement cloud, SharePoint fonctionne sur site",
+                    "OneDrive est pour le partage externe, SharePoint est interne uniquement"
+                ],
+                correctAnswer: 0,
+                feedback: {
+                    correct: "Correct ! OneDrive est conçu pour le stockage personnel/individuel, tandis que SharePoint est conçu pour la collaboration d'équipe et la gestion de contenu.",
+                    incorrect: "Incorrect. La principale différence est qu'OneDrive est pour les fichiers personnels, tandis que SharePoint est pour la collaboration d'équipe et le contenu."
+                }
+            },
+            {
+                id: 7,
+                question: "Laquelle de ces plateformes permet la co-édition de documents en temps réel ?",
+                options: [
+                    "Uniquement Microsoft Teams",
+                    "Uniquement SharePoint",
+                    "Uniquement OneDrive",
+                    "Toutes ces plateformes"
+                ],
+                correctAnswer: 3,
+                feedback: {
+                    correct: "Correct ! Teams, SharePoint et OneDrive supportent tous la co-édition en temps réel des documents Office.",
+                    incorrect: "Incorrect. Les trois plateformes (Teams, SharePoint et OneDrive) supportent la co-édition en temps réel des documents Office."
+                }
+            },
+            {
+                id: 8,
+                question: "Que se passe-t-il avec vos fichiers Microsoft Teams si vous supprimez un canal Teams ?",
+                options: [
+                    "Les fichiers sont définitivement supprimés",
+                    "Les fichiers restent dans SharePoint mais la structure des dossiers change",
+                    "Les fichiers sont automatiquement déplacés vers OneDrive",
+                    "Les fichiers sont archivés pendant 30 jours puis supprimés"
+                ],
+                correctAnswer: 1,
+                feedback: {
+                    correct: "Correct ! Lorsque vous supprimez un canal Teams, les fichiers restent dans SharePoint mais sous une structure de dossiers différente.",
+                    incorrect: "Incorrect. Les fichiers des canaux Teams supprimés restent dans SharePoint, mais la structure des dossiers change."
+                }
+            },
+            {
+                id: 9,
+                question: "Pour partager un fichier avec quelqu'un en dehors de votre organisation, quelle est la méthode recommandée ?",
+                options: [
+                    "Partage direct via OneDrive avec lien de partage",
+                    "Partage via SharePoint avec permissions externes",
+                    "Les deux méthodes sont possibles selon le contexte",
+                    "Envoyer le fichier par email via Outlook"
+                ],
+                correctAnswer: 2,
+                feedback: {
+                    correct: "Correct ! OneDrive est idéal pour le partage personnel et ponctuel, SharePoint pour le partage structuré d'équipe. Les deux nécessitent que l'administrateur autorise le partage externe.",
+                    incorrect: "Incorrect. Les deux services permettent le partage externe, mais OneDrive est plus simple pour le partage personnel, SharePoint pour le partage d'équipe structuré."
+                }
+            },
+            {
+                id: 10,
+                question: "Quelle est la meilleure pratique pour organiser les fichiers d'un projet d'équipe ?",
+                options: [
+                    "Tout stocker dans OneDrive et partager individuellement",
+                    "Utiliser SharePoint pour les fichiers d'équipe et OneDrive pour les brouillons personnels",
+                    "Utiliser uniquement Teams pour tout stocker",
+                    "Envoyer tous les fichiers par email"
+                ],
+                correctAnswer: 1,
+                feedback: {
+                    correct: "Correct ! SharePoint pour les fichiers finalisés d'équipe avec structure organisée, OneDrive pour vos brouillons et fichiers personnels avant partage.",
+                    incorrect: "Incorrect. La meilleure pratique est d'utiliser SharePoint pour les fichiers d'équipe finalisés et OneDrive pour vos brouillons personnels."
+                }
+            }
+        ];
+
+        // Quiz State
+        let currentQuestion = 0;
+        let selectedOption = null;
+        let showFeedback = false;
+        let score = 0;
+        let answeredQuestions = [];
+        let quizCompleted = false;
+
+        // Quiz Functions
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            if (quizCompleted) {
+                renderResults(container);
+                return;
+            }
+
+            const question = quizQuestions[currentQuestion];
+            const isAnswered = answeredQuestions.includes(currentQuestion);
+
+            container.innerHTML = `
+                <div class="bg-primary-600 text-white p-6">
+                    <div class="flex justify-between items-center">
+                        <span class="font-heading font-medium">Question ${currentQuestion + 1} sur ${quizQuestions.length}</span>
+                        <span class="font-heading font-medium">Score : ${score}/${answeredQuestions.length}</span>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-heading font-bold mb-6 text-secondary-800">${question.question}</h3>
+                    
+                    <div class="space-y-3 mb-6">
+                        ${question.options.map((option, index) => `
+                            <div onclick="selectOption(${index})" class="option-button p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                                selectedOption === index 
+                                    ? 'border-primary-600 bg-primary-50' 
+                                    : 'border-secondary-200 hover:border-secondary-300'
+                            } ${
+                                showFeedback && index === question.correctAnswer
+                                    ? 'border-primary-500 bg-primary-50'
+                                    : ''
+                            } ${
+                                showFeedback && index === selectedOption && index !== question.correctAnswer
+                                    ? 'border-red-500 bg-red-50'
+                                    : ''
+                            }" data-index="${index}">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full border flex items-center justify-center mr-3 ${
+                                        selectedOption === index ? 'border-primary-600 bg-primary-600 text-white' : 'border-secondary-300'
+                                    } ${
+                                        showFeedback && index === question.correctAnswer ? 'border-primary-500 bg-primary-500 text-white' : ''
+                                    } ${
+                                        showFeedback && index === selectedOption && index !== question.correctAnswer ? 'border-red-500 bg-red-500 text-white' : ''
+                                    }">
+                                        ${showFeedback && index === question.correctAnswer ? '✓' : ''}
+                                        ${showFeedback && index === selectedOption && index !== question.correctAnswer ? '✗' : ''}
+                                        ${(!showFeedback && selectedOption === index) ? '✓' : ''}
+                                    </div>
+                                    <span class="font-sans">${option}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${showFeedback ? `
+                        <div class="p-4 rounded-lg mb-6 ${selectedOption === question.correctAnswer ? 'bg-primary-50 border border-primary-200' : 'bg-red-50 border border-red-200'}">
+                            <div class="flex items-start">
+                                <span class="text-lg mr-2">${selectedOption === question.correctAnswer ? '✓' : '✗'}</span>
+                                <p class="font-sans">
+                                    ${selectedOption === question.correctAnswer ? question.feedback.correct : question.feedback.incorrect}
+                                </p>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex justify-between">
+                        ${!showFeedback ? `
+                            <button onclick="submitAnswer()" ${selectedOption === null ? 'disabled' : ''} 
+                                class="px-6 py-2 rounded-lg font-medium transition-colors font-heading ${
+                                    selectedOption !== null
+                                        ? 'bg-primary-600 text-white hover:bg-primary-700'
+                                        : 'bg-secondary-200 text-secondary-500 cursor-not-allowed'
+                                }">
+                                Valider la réponse
+                            </button>
+                        ` : `
+                            <button onclick="nextQuestion()" 
+                                class="flex items-center px-6 py-2 rounded-lg bg-primary-600 text-white font-heading font-medium hover:bg-primary-700 transition-colors">
+                                ${currentQuestion < quizQuestions.length - 1 ? 'Question suivante →' : 'Voir les résultats 🏆'}
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderResults(container) {
+            const percentage = (score / quizQuestions.length) * 100;
+            let message = "";
+            
+            if (percentage >= 90) message = "Excellent ! Vous êtes un expert Microsoft 365 !";
+            else if (percentage >= 70) message = "Très bien ! Vous avez une solide compréhension des services Microsoft 365.";
+            else if (percentage >= 50) message = "Bon effort ! Vous avez une compréhension de base, mais pourriez bénéficier de revoir certains concepts.";
+            else message = "Vous pourriez vouloir revoir l'infographie pour mieux comprendre les services Microsoft 365.";
+
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white p-6 text-center">
+                    <div class="text-5xl mb-3">🏆</div>
+                    <h3 class="text-2xl font-heading font-bold mb-2">Quiz terminé !</h3>
+                    <p class="font-sans">Votre score final : ${score} sur ${quizQuestions.length}</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="mb-6 text-center">
+                        <p class="text-lg font-sans font-medium mb-2 text-secondary-800">${message}</p>
+                        <div class="w-full bg-secondary-200 rounded-full h-2.5 mb-4">
+                            <div class="bg-primary-600 h-2.5 rounded-full transition-all duration-1000" style="width: ${percentage}%"></div>
+                        </div>
+                        <p class="text-secondary-600 font-sans">Vous avez répondu correctement à ${score} questions sur ${quizQuestions.length}</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button onclick="resetQuiz()" class="px-6 py-2 rounded-lg bg-primary-600 text-white font-heading font-medium hover:bg-primary-700 transition-colors">
+                            Recommencer le quiz
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectOption(index) {
+            if (answeredQuestions.includes(currentQuestion)) return;
+            selectedOption = index;
+            renderQuiz();
+        }
+
+        function submitAnswer() {
+            if (selectedOption === null) return;
+            
+            if (!answeredQuestions.includes(currentQuestion)) {
+                answeredQuestions.push(currentQuestion);
+                
+                if (selectedOption === quizQuestions[currentQuestion].correctAnswer) {
+                    score++;
+                }
+            }
+            
+            showFeedback = true;
+            renderQuiz();
+        }
+
+        function nextQuestion() {
+            selectedOption = null;
+            showFeedback = false;
+            
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                renderQuiz();
+            } else {
+                quizCompleted = true;
+                renderQuiz();
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            selectedOption = null;
+            showFeedback = false;
+            score = 0;
+            answeredQuestions = [];
+            quizCompleted = false;
+            renderQuiz();
+        }
+
+        // Initialize quiz when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>
